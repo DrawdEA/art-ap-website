@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface Section1Props {
@@ -7,62 +8,83 @@ interface Section1Props {
 }
 
 export default function Section1({ onComplete }: Section1Props) {
+  const [showCommand, setShowCommand] = useState(false);
+  const [currentParagraph, setCurrentParagraph] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showFinalButton, setShowFinalButton] = useState(false);
+  
+  const paragraphs = [
+    "Computer Science. Probably the farthest away from what people would think is \"artistic.\" Finding the most efficient algorithm, coding with the most logical framework, and solving LeetCode problems are some things that come to mind when people think of our course. These ideas don't seem like something you would interpret, nor consider as an interpretation. Nothing about these ideas sounds creative at all.",
+    "Despite this, I find that in a specific field of this course that I am currently pursuing, there is one that seems to sway away from this trend. Web development. I find that it's just as much considered \"art\" as how people look at paintings, songs, and other traditional forms of art."
+  ];
+
+  useEffect(() => {
+    // Show command after 1 second
+    const commandTimer = setTimeout(() => setShowCommand(true), 1000);
+    return () => clearTimeout(commandTimer);
+  }, []);
+
+  useEffect(() => {
+    if (showCommand && currentParagraph < paragraphs.length && currentIndex < paragraphs[currentParagraph].length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(prev => prev + paragraphs[currentParagraph][currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 30);
+
+      return () => clearTimeout(timer);
+    } else if (currentIndex >= paragraphs[currentParagraph].length && currentParagraph < paragraphs.length - 1) {
+      // Move to next paragraph automatically
+      setTimeout(() => {
+        setCurrentParagraph(prev => prev + 1);
+        setCurrentIndex(0);
+        setDisplayedText(prev => prev + '\n\n');
+      }, 1000);
+    } else if (currentIndex >= paragraphs[currentParagraph].length && currentParagraph >= paragraphs.length - 1) {
+      // All paragraphs complete, show final button
+      setTimeout(() => setShowFinalButton(true), 1000);
+    }
+  }, [currentIndex, currentParagraph, paragraphs, showCommand]);
+
   return (
-    <motion.div 
-      className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white p-8 flex flex-col justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h1 
-          className="text-6xl font-bold mb-8 text-blue-400 font-mono"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          Computer Science
-        </motion.h1>
+    <div className="min-h-screen bg-black text-green-400 p-8 font-mono">
+      <div className="max-w-4xl mx-auto">
+        {/* Terminal header */}
+        <div className="flex items-center mb-6 text-sm text-gray-400">
+          <div className="flex space-x-2 mr-4">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <span>terminal — bash</span>
+        </div>
         
-        <motion.p 
-          className="text-xl leading-relaxed mb-8 text-gray-300"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          Probably the farthest away from what people would think is "artistic." 
-          Finding the most efficient algorithm, coding with the most logical framework, 
-          and solving LeetCode problems are some things that come to mind when people 
-          think of our course. These ideas don't seem like something you would interpret, 
-          nor consider as an interpretation. Nothing about these ideas sounds creative at all.
-        </motion.p>
-
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-        >
-          <p className="text-xl leading-relaxed mb-12 text-gray-300">
-            Despite this, I find that in a specific field of this course that I am 
-            currently pursuing, there is one that seems to sway away from this trend. 
-            <span className="text-blue-400 font-semibold"> Web development.</span> 
-            I find that it's just as much considered "art" as how people look at 
-            paintings, songs, and other traditional forms of art.
-          </p>
-        </motion.div>
-
-                 <motion.button
-           className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
-           onClick={onComplete}
-           initial={{ scale: 0 }}
-           animate={{ scale: 1 }}
-           transition={{ delay: 3, duration: 0.5 }}
-           whileHover={{ scale: 1.02 }}
-           whileTap={{ scale: 0.98 }}
-         >
-           Continue to HTML
-         </motion.button>
+        {/* Command line */}
+        {showCommand && (
+          <div className="mb-4">
+            <span className="text-green-400">$ </span>
+            <span className="text-white">cat computer_science.txt</span>
+          </div>
+        )}
+        
+        {/* Content with typewriter effect */}
+        <div className="text-lg leading-relaxed mb-8 whitespace-pre-wrap">
+          {displayedText}
+          <span className="animate-pulse">|</span>
+        </div>
+        
+        {/* Final continue button */}
+        {showFinalButton && (
+          <motion.button
+            className="bg-black hover:bg-gray-800 text-green-400 border border-green-400 px-8 py-4 rounded-none text-xl font-light transition-colors duration-300"
+            onClick={onComplete}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            $ continue_to_html
+          </motion.button>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 }
