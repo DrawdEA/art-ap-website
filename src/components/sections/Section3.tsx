@@ -67,6 +67,16 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
 
   return (
     <div className="min-h-screen bg-white p-8">
+      {/* Skip button */}
+      <div className="absolute top-8 right-8">
+        <button
+          onClick={onComplete}
+          className="text-gray-400 hover:text-gray-600 text-sm font-light transition-colors duration-200 underline underline-offset-2"
+        >
+          Skip
+        </button>
+      </div>
+      
       <div className="max-w-6xl mx-auto">
         {/* Left side - Text content */}
         <div className="w-1/2 float-left pr-8">

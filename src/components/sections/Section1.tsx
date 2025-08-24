@@ -48,6 +48,16 @@ export default function Section1({ onComplete }: Section1Props) {
 
   return (
     <div className="min-h-screen bg-black text-green-400 p-8 font-mono">
+      {/* Skip button */}
+      <div className="absolute top-8 right-8">
+        <button
+          onClick={onComplete}
+          className="text-green-400 hover:text-green-300 text-sm font-light transition-colors duration-200 underline underline-offset-2"
+        >
+          Skip
+        </button>
+      </div>
+      
       <div className="max-w-4xl mx-auto">
         {/* Terminal header */}
         <div className="flex items-center mb-6 text-sm text-gray-400">

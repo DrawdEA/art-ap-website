@@ -9,11 +9,21 @@ interface Section5Props {
 export default function Section5({ onComplete }: Section5Props) {
   return (
     <motion.div 
-      className="min-h-screen bg-black text-white p-8 flex flex-col justify-center"
+      className="min-h-screen bg-black text-white p-8 flex flex-col justify-center relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* Skip button */}
+      <div className="absolute top-8 right-8">
+        <button
+          onClick={onComplete}
+          className="text-gray-400 hover:text-gray-300 text-sm font-light transition-colors duration-200 underline underline-offset-2"
+        >
+          Skip
+        </button>
+      </div>
+      
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1 
           className="text-6xl font-bold mb-8 text-white font-display"

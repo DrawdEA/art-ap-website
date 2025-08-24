@@ -9,11 +9,21 @@ interface Section7Props {
 export default function Section7({ blogElements }: Section7Props) {
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-green-900 to-teal-900 text-white p-8"
+      className="min-h-screen bg-gradient-to-br from-green-900 to-teal-900 text-white p-8 relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* Restart button */}
+      <div className="absolute top-8 right-8">
+        <button
+          onClick={() => window.location.reload()}
+          className="text-gray-300 hover:text-white text-sm font-light transition-colors duration-200 underline underline-offset-2"
+        >
+          Restart
+        </button>
+      </div>
+      
       <div className="max-w-6xl mx-auto">
         {/* Final message */}
         <motion.div 

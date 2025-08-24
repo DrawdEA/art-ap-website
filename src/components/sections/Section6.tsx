@@ -9,11 +9,21 @@ interface Section6Props {
 export default function Section6({ onComplete }: Section6Props) {
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-indigo-900 to-purple-900 text-white p-8 flex flex-col justify-center"
+      className="min-h-screen bg-gradient-to-br from-indigo-900 to-purple-900 text-white p-8 flex flex-col justify-center relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* Skip button */}
+      <div className="absolute top-8 right-8">
+        <button
+          onClick={onComplete}
+          className="text-gray-300 hover:text-white text-sm font-light transition-colors duration-200 underline underline-offset-2"
+        >
+          Skip
+        </button>
+      </div>
+      
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           className="mb-12"
