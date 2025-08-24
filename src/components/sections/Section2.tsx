@@ -24,10 +24,10 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
   const [displayedTitle, setDisplayedTitle] = useState('');
 
   const steps = [
-    { text: "You add a title, done.", delay: 1000, action: () => addBlogElement('title', 'My First Blog') },
-    { text: "You add a paragraph, done.", delay: 3000, action: () => addBlogElement('paragraphs', 'This is my first paragraph. Welcome to my blog!') },
-    { text: "You group them together using a div, easy.", delay: 5000, action: () => addBlogElement('divs', 'blog-post') },
-    { text: "You create multiple duplicates of those things, and you've got yourself a blog website.", delay: 7000, action: () => {
+    { text: "You add a title, done.", delay: 1500, action: () => addBlogElement('title', 'My First Blog') },
+    { text: "You add a paragraph, done.", delay: 1500, action: () => addBlogElement('paragraphs', 'This is my first paragraph. Welcome to my blog!') },
+    { text: "You group them together using a div, easy.", delay: 1500, action: () => addBlogElement('divs', 'blog-post') },
+    { text: "You create multiple duplicates of those things, and you've got yourself a blog website.", delay: 2500, action: () => {
       // Add multiple blog post divs to show duplication
       addBlogElement('divs', 'blog-post');
       addBlogElement('divs', 'blog-post');
@@ -120,7 +120,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
                 <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                 <div className="w-3 h-3 bg-green-400 rounded-full"></div>
               </div>
-              <span className="text-sm text-gray-600">Edward Diesta's Website</span>
+              <span className="text-sm text-gray-600">Edward Diesta&apos;s Website</span>
             </div>
             
             {/* Raw HTML content - unstyled like a real browser */}
