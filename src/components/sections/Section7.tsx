@@ -22,7 +22,7 @@ export default function Section7({ blogElements }: Section7Props) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-6">Art is everywhere.</h1>
+          <h1 className="text-5xl font-bold mb-6 font-display">Art is everywhere.</h1>
           <p className="text-xl text-green-200 leading-relaxed">
             Needless to say, with how fast the technology is improving, websites are also everywhere. 
             Moving forward, I'd like to see how people will open up to the discussion of whether or not 
@@ -86,7 +86,7 @@ export default function Section7({ blogElements }: Section7Props) {
               transition={{ delay: 2.5, duration: 1 }}
             />
             <motion.h2 
-              className="text-3xl font-bold mb-2"
+              className="text-3xl font-bold mb-2 font-display"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 3, duration: 0.5 }}
@@ -109,33 +109,33 @@ export default function Section7({ blogElements }: Section7Props) {
             />
           </div>
 
-          <motion.a
-            href="https://github.com/DrawdEA/art-ap-website"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300 mr-4"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 4, duration: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="mr-2">📁</span>
-            View the Blueprint on GitHub
-          </motion.a>
+                     <motion.a
+             href="https://github.com/DrawdEA/art-ap-website"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="inline-flex items-center bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300 mr-4"
+             initial={{ scale: 0 }}
+             animate={{ scale: 1 }}
+             transition={{ delay: 4, duration: 0.5 }}
+             whileHover={{ scale: 1.02 }}
+             whileTap={{ scale: 0.98 }}
+           >
+             <span className="mr-2">📁</span>
+             View the Blueprint on GitHub
+           </motion.a>
 
-          <motion.button
-            onClick={() => window.location.reload()}
-            className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 4.5, duration: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="mr-2">🔄</span>
-            Restart Experience
-          </motion.button>
+           <motion.button
+             onClick={() => window.location.reload()}
+             className="inline-flex items-center bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+             initial={{ scale: 0 }}
+             animate={{ scale: 1 }}
+             transition={{ delay: 4.5, duration: 0.5 }}
+             whileHover={{ scale: 1.02 }}
+             whileTap={{ scale: 0.98 }}
+           >
+             <span className="mr-2">🔄</span>
+             Restart Experience
+           </motion.button>
         </motion.div>
       </div>
     </motion.div>

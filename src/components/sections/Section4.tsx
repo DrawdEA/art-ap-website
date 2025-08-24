@@ -60,7 +60,7 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
         {/* Left side - Text content */}
         <div className="w-1/2 float-left pr-8">
           <motion.h1 
-            className="text-5xl font-bold mb-8 text-yellow-600"
+            className="text-5xl font-bold mb-8 text-yellow-600 font-sans"
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -78,16 +78,16 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
           </motion.p>
 
           {currentStep >= steps.length && (
-            <motion.button
-              className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300"
-              onClick={onComplete}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Continue to Synthesis
-            </motion.button>
+                         <motion.button
+               className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+               onClick={onComplete}
+               initial={{ scale: 0 }}
+               animate={{ scale: 1 }}
+               whileHover={{ scale: 1.02 }}
+               whileTap={{ scale: 0.98 }}
+             >
+               Continue to Synthesis
+             </motion.button>
           )}
         </div>
 
@@ -138,16 +138,16 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
             ))}
 
             {showButton && (
-              <motion.button
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold mb-4"
-                onClick={handleButtonClick}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Click Me! 🎯
-              </motion.button>
+                             <motion.button
+                 className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-none font-light mb-4"
+                 onClick={handleButtonClick}
+                 initial={{ opacity: 0, scale: 0 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 whileHover={{ scale: 1.02 }}
+                 whileTap={{ scale: 0.98 }}
+               >
+                 Click Me! 🎯
+               </motion.button>
             )}
 
             {showAnimations && (

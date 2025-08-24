@@ -27,7 +27,7 @@ export default function Section6({ onComplete }: Section6Props) {
         </motion.div>
 
         <motion.h1 
-          className="text-5xl font-bold mb-8 text-white"
+          className="text-5xl font-bold mb-8 text-white font-serif"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
@@ -46,17 +46,17 @@ export default function Section6({ onComplete }: Section6Props) {
           interactions should be ordered show that the line between coder and artist is blurrier than we imagine.
         </motion.p>
 
-        <motion.button
-          className="bg-white hover:bg-gray-200 text-indigo-900 px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300"
-          onClick={onComplete}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 2.5, duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Continue to Conclusion
-        </motion.button>
+                 <motion.button
+           className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+           onClick={onComplete}
+           initial={{ scale: 0 }}
+           animate={{ scale: 1 }}
+           transition={{ delay: 2.5, duration: 0.5 }}
+           whileHover={{ scale: 1.02 }}
+           whileTap={{ scale: 0.98 }}
+         >
+           Continue to Conclusion
+         </motion.button>
       </div>
     </motion.div>
   );

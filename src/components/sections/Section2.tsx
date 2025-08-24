@@ -40,7 +40,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
         {/* Left side - Text content */}
         <div className="w-1/2 float-left pr-8">
           <motion.h1 
-            className="text-5xl font-bold mb-8 text-gray-800"
+            className="text-5xl font-bold mb-8 text-gray-800 font-sans"
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -58,16 +58,16 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
           </motion.p>
 
           {currentStep >= steps.length && (
-            <motion.button
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300"
-              onClick={onComplete}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Continue to CSS
-            </motion.button>
+                         <motion.button
+               className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+               onClick={onComplete}
+               initial={{ scale: 0 }}
+               animate={{ scale: 1 }}
+               whileHover={{ scale: 1.02 }}
+               whileTap={{ scale: 0.98 }}
+             >
+               Continue to CSS
+             </motion.button>
           )}
         </div>
 

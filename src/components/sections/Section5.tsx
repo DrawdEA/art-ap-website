@@ -16,7 +16,7 @@ export default function Section5({ onComplete }: Section5Props) {
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1 
-          className="text-6xl font-bold mb-8 text-white"
+          className="text-6xl font-bold mb-8 text-white font-display"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -47,17 +47,17 @@ export default function Section5({ onComplete }: Section5Props) {
           </p>
         </motion.div>
 
-        <motion.button
-          className="bg-white hover:bg-gray-200 text-black px-8 py-4 rounded-lg text-xl font-semibold transition-all duration-300"
-          onClick={onComplete}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 3, duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Continue to Human Aspect
-        </motion.button>
+                 <motion.button
+           className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+           onClick={onComplete}
+           initial={{ scale: 0 }}
+           animate={{ scale: 1 }}
+           transition={{ delay: 3, duration: 0.5 }}
+           whileHover={{ scale: 1.02 }}
+           whileTap={{ scale: 0.98 }}
+         >
+           Continue to Human Aspect
+         </motion.button>
       </div>
     </motion.div>
   );
