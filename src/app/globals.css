@@ -12,6 +12,7 @@
   --font-mono: var(--font-fira-code);
   --font-serif: var(--font-playfair);
   --font-display: var(--font-poppins);
+  --font-distressed: var(--font-rubik-distressed);
 }
 
 @media (prefers-color-scheme: dark) {

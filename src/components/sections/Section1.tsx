@@ -91,7 +91,7 @@ export default function Section1({ onComplete }: Section1Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            $ continue_to_html
+                         Continue
           </motion.button>
         )}
       </div>

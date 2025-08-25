@@ -11,59 +11,80 @@ interface Section3Props {
 
 export default function Section3({ onComplete, addBlogElement, blogElements }: Section3Props) {
   const [currentStep, setCurrentStep] = useState(0);
+  const [showBlog, setShowBlog] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
   const [appliedStyles, setAppliedStyles] = useState<any>({});
 
+  const titleText = "CSS.";
+  const introText = "Okay, cool. We got the content down. Now what? We style it. The second backbone of the internet is CSS. It is what allows us to color and style our structured content to make it prettier. Think of it as the coder's paintbrush. With this, we can now let our creative freedom roam and add as much styling as we wish.";
+  
+  const [titleDisplayed, setTitleDisplayed] = useState(false);
+  const [titleTextIndex, setTitleTextIndex] = useState(0);
+  const [displayedTitle, setDisplayedTitle] = useState('');
+  const [showChatBubble, setShowChatBubble] = useState(false);
+  const [currentChatText, setCurrentChatText] = useState('');
+
   const steps = [
-    { 
-      text: "Okay, cool. We got the content down. Now what? We style it. The second backbone of the internet is CSS. It is what allows us to color and style our structured content to make it prettier. Think of it as the coder's paintbrush.", 
-      delay: 0 
-    },
-    { 
-      text: "With this, we can now let our creative freedom roam and add as much styling as we wish.", 
-      delay: 3000 
-    },
-    { 
-      text: "We can color this division black", 
-      delay: 6000, 
-      action: () => setAppliedStyles(prev => ({ ...prev, color: 'black' }))
-    },
-    { 
-      text: "the other orange", 
-      delay: 8000, 
-      action: () => setAppliedStyles(prev => ({ ...prev, color: 'orange' }))
-    },
-    { 
-      text: "and so on, and so forth. We can change their fonts to make it much prettier", 
-      delay: 10000, 
-      action: () => setAppliedStyles(prev => ({ ...prev, font: 'serif' }))
-    },
-    { 
-      text: "We can add borders", 
-      delay: 13000, 
-      action: () => setAppliedStyles(prev => ({ ...prev, border: true }))
-    },
-    { 
-      text: "and add our own images to make it personalized.", 
-      delay: 16000, 
-      action: () => {
-        addBlogElement('images', 'sample-image.jpg');
-        setAppliedStyles(prev => ({ ...prev, image: true }));
-      }
-    }
+    { text: "We can color the paragraph blue", delay: 1000, action: () => setAppliedStyles(prev => ({ ...prev, paragraphColor: 'blue' })) },
+    { text: "or change all elements to black", delay: 3000, action: () => setAppliedStyles(prev => ({ ...prev, color: 'black' })) },
+    { text: "We can change their fonts to make it much prettier", delay: 5000, action: () => setAppliedStyles(prev => ({ ...prev, font: 'minimalist' })) },
+    { text: "We can add designed borders", delay: 7000, action: () => setAppliedStyles(prev => ({ ...prev, border: true })) },
+    { text: "and add our own images to make it personalized.", delay: 9000, action: () => {
+      setAppliedStyles(prev => ({ ...prev, image: true }));
+      setShowBlog(true);
+    }}
   ];
 
+  // Typewriter effect for title and intro text
   useEffect(() => {
-    if (currentStep < steps.length) {
+    if (!titleDisplayed) {
+      // Start title typewriter after 500ms
+      setTimeout(() => setTitleDisplayed(true), 500);
+    } else if (titleTextIndex < titleText.length) {
+      // Type out title first
       const timer = setTimeout(() => {
-        if (steps[currentStep].action) {
-          steps[currentStep].action();
+        setDisplayedTitle(prev => prev + titleText[titleTextIndex]);
+        setTitleTextIndex(prev => prev + 1);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    } else if (currentIndex < introText.length) {
+      // After title is complete, type out intro text
+      const timer = setTimeout(() => {
+        setDisplayedText(prev => prev + introText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 30);
+
+      return () => clearTimeout(timer);
+    } else {
+      // Show preview after intro text is complete
+      setTimeout(() => setShowPreview(true), 1000);
+    }
+  }, [titleDisplayed, titleTextIndex, titleText, currentIndex, introText]);
+
+  // Handle steps after preview is shown
+  useEffect(() => {
+    if (showPreview && currentStep < steps.length) {
+      const timer = setTimeout(() => {
+        const currentStepData = steps[currentStep];
+        if (currentStepData && currentStepData.action) {
+          currentStepData.action();
         }
+        // Show chat bubble for current step
+        setCurrentChatText(currentStepData.text);
+        setShowChatBubble(true);
+        
+        // Hide chat bubble after 2 seconds
+        setTimeout(() => setShowChatBubble(false), 2000);
+        
         setCurrentStep(prev => prev + 1);
       }, steps[currentStep].delay);
 
       return () => clearTimeout(timer);
     }
-  }, [currentStep]);
+  }, [showPreview, currentStep, steps]);
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -77,30 +98,163 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
         </button>
       </div>
       
-      <div className="max-w-6xl mx-auto">
-        {/* Left side - Text content */}
-        <div className="w-1/2 float-left pr-8">
-          <motion.h1 
-            className="text-5xl font-bold mb-8 text-purple-600 font-serif"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            CSS
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl leading-relaxed mb-8 text-gray-600"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            {steps[currentStep]?.text || steps[steps.length - 1].text}
-          </motion.p>
+             <div className="max-w-4xl mx-auto">
+         {/* Typewriter intro text at the top */}
+         <div className="text-center mb-12">
+           {titleDisplayed && (
+             <h1 className="text-5xl font-bold mb-8 text-purple-600 font-serif">
+               {displayedTitle}
+               {titleTextIndex < titleText.length && <span className="animate-pulse">|</span>}
+             </h1>
+           )}
+         
+           <div className="text-xl leading-relaxed text-gray-600 mb-8">
+             {displayedText}
+             {titleTextIndex >= titleText.length && currentIndex < introText.length && <span className="animate-pulse">|</span>}
+           </div>
+         </div>
 
-          {currentStep >= steps.length && (
-                         <motion.button
-               className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+         
+
+         {/* Chat Bubble for Step Details */}
+         {showChatBubble && (
+           <motion.div 
+             className={`fixed z-50 ${
+               currentStep === 1 ? 'top-1/3 left-1/2 transform -translate-x-1/2' : // Blue paragraph - position near paragraph
+               currentStep === 2 ? 'top-1/4 left-1/2 transform -translate-x-1/2' : // Dark mode - general change, keep at top
+               currentStep === 3 ? 'top-1/4 left-1/2 transform -translate-x-1/2' : // Fonts - general change, keep at top
+               currentStep === 4 ? 'top-1/4 left-1/2 transform -translate-x-1/2' : // Borders - general change, keep at top
+               'top-1/4 left-1/2 transform -translate-x-1/2' // Default position
+             }`}
+             initial={{ opacity: 0, scale: 0.8, y: 20 }}
+             animate={{ opacity: 1, scale: 1, y: 0 }}
+             exit={{ opacity: 0, scale: 0.8, y: 20 }}
+             transition={{ duration: 0.3 }}
+           >
+             <div className="bg-white border-2 border-gray-300 rounded-lg shadow-2xl p-6 max-w-md">
+               <div className="flex items-center mb-3">
+                 <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                 <span className="text-sm font-medium text-gray-600">CSS Step</span>
+               </div>
+               <p className="text-gray-800 text-lg leading-relaxed">{currentChatText}</p>
+               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-b-2 border-l-2 border-gray-300 rotate-45"></div>
+             </div>
+           </motion.div>
+         )}
+
+         {/* CSS Styled Blog Preview */}
+         {showPreview && (
+           <div className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+             {/* Browser-like header */}
+             <div className="bg-gray-200 px-4 py-2 border-b border-gray-300 flex items-center">
+               <div className="flex space-x-2 mr-3">
+                 <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                 <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                 <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+               </div>
+               <span className="text-sm text-gray-600">Edward Diesta's Website - CSS Styled</span>
+             </div>
+             
+                           <div className="p-6" style={{
+                             backgroundColor: appliedStyles.color === 'black' ? '#1f2937' : 'white',
+                             transition: 'all 0.4s ease-in-out'
+                           }}>
+                <motion.h1 
+                 className="text-3xl font-bold mb-4 text-gray-800"
+                 style={{
+                   fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
+                   color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
+                   fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700',
+                   letterSpacing: 'normal'
+                 }}
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.5 }}
+               >
+                 You add a title, done.
+               </motion.h1>
+
+                <motion.p 
+                  className="text-gray-600 mb-4 leading-relaxed"
+                  style={{
+                    color: appliedStyles.paragraphColor === 'blue' && !appliedStyles.color ? '#3b82f6' : 
+                           appliedStyles.color === 'black' ? '#e5e7eb' : '#6b7280',
+                    fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
+                    border: 'none', // Paragraph has no borders
+                    padding: '0',
+                    borderRadius: '0',
+                    backgroundColor: appliedStyles.paragraphColor === 'blue' && !appliedStyles.color ? '#dbeafe' : 'transparent',
+                    transition: 'all 0.4s ease-in-out'
+                  }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  You add a paragraph, done.
+                </motion.p>
+
+               {[0, 1, 2].map((index) => (
+                 <motion.div 
+                   key={index}
+                   className="border border-gray-300 p-4 mb-4 relative"
+                   style={{
+                     backgroundColor: appliedStyles.color === 'black' ? '#374151' : 'transparent',
+                     color: appliedStyles.color === 'black' ? '#f3f4f6' : 'inherit',
+                     border: appliedStyles.border ? '2px solid #6b7280' : 
+                            appliedStyles.color === 'black' ? 'none' : '1px solid #9ca3af',
+                     borderRadius: '0',
+                     background: appliedStyles.color === 'black' ? '#374151' : 'transparent',
+                     transition: 'all 0.4s ease-in-out'
+                   }}
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.3, delay: index * 0.1 }}
+                 >
+                   {/* Placeholder people images - moved to upper right and vertically centered */}
+                   {appliedStyles.image && (
+                     <div className="absolute top-1/2 right-6 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm overflow-hidden transform -translate-y-1/2">
+                       <img 
+                         src={`https://i.pravatar.cc/48?img=${index + 1}`} 
+                         alt="Profile" 
+                         className="w-full h-full object-cover"
+                         onError={(e) => {
+                           const target = e.currentTarget as HTMLImageElement;
+                           target.style.display = 'none';
+                           const fallback = target.nextElementSibling as HTMLElement;
+                           if (fallback) fallback.style.display = 'flex';
+                         }}
+                       />
+                       <span style={{ display: 'none' }}>👤</span>
+                     </div>
+                   )}
+                   <h2 className="text-xl mb-2" 
+                       style={{ 
+                         color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
+                         fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
+                         fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700'
+                       }}>
+                     You group them together using a div, easy.
+                   </h2>
+                   <p className="text-sm" 
+                      style={{ 
+                        color: appliedStyles.color === 'black' ? '#d1d5db' : '#6b7280',
+                        fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif'
+                      }}>
+                     You create multiple duplicates of those things, and you&apos;ve got yourself a blog website.
+                   </p>
+                 </motion.div>
+               ))}
+
+
+             </div>
+           </div>
+         )}
+
+         {/* Continue button */}
+         {showBlog && (
+           <motion.div className="text-center mt-8">
+             <motion.button
+               className="bg-transparent hover:bg-gray-100 text-black px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
                onClick={onComplete}
                initial={{ scale: 0 }}
                animate={{ scale: 1 }}
@@ -109,77 +263,9 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
              >
                Continue to JavaScript
              </motion.button>
-          )}
-        </div>
-
-        {/* Right side - Styled blog preview */}
-        <div className="w-1/2 float-right">
-          <div className="bg-gray-100 p-6 rounded-lg min-h-96">
-            <h3 className="text-lg font-semibold mb-4 text-gray-700">Styled Blog Preview</h3>
-            
-            {blogElements.title && (
-              <motion.h1 
-                className="text-3xl font-bold mb-4 text-gray-800"
-                style={{
-                  fontFamily: appliedStyles.font === 'serif' ? 'Georgia, serif' : 'inherit'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {blogElements.title}
-              </motion.h1>
-            )}
-
-            {blogElements.paragraphs.map((paragraph: string, index: number) => (
-              <motion.p 
-                key={index}
-                className="text-gray-600 mb-4 leading-relaxed"
-                style={{
-                  color: appliedStyles.color || 'inherit',
-                  fontFamily: appliedStyles.font === 'serif' ? 'Georgia, serif' : 'inherit',
-                  border: appliedStyles.border ? '2px solid #e5e7eb' : 'none',
-                  padding: appliedStyles.border ? '8px' : '0',
-                  borderRadius: appliedStyles.border ? '4px' : '0'
-                }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-
-            {blogElements.divs.map((div: string, index: number) => (
-              <motion.div 
-                key={index}
-                className="border-2 border-dashed border-gray-400 p-4 mb-4 rounded"
-                style={{
-                  backgroundColor: appliedStyles.color === 'black' ? '#000' : 
-                                 appliedStyles.color === 'orange' ? '#f97316' : 'transparent',
-                  color: appliedStyles.color === 'black' ? '#fff' : 'inherit'
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                <span className="text-gray-500 text-sm">div: {div}</span>
-              </motion.div>
-            ))}
-
-            {appliedStyles.image && (
-              <motion.div
-                className="w-full h-32 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center text-white font-semibold"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                🖼️ Sample Image
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </div>
+           </motion.div>
+         )}
+       </div>
     </div>
   );
 }

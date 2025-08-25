@@ -144,7 +144,7 @@ export default function Section7({ blogElements }: Section7Props) {
              whileTap={{ scale: 0.98 }}
            >
              <span className="mr-2">🔄</span>
-             Restart Experience
+             Continue
            </motion.button>
         </motion.div>
       </div>
