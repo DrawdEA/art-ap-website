@@ -27,11 +27,11 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
   const [currentChatText, setCurrentChatText] = useState('');
 
   const steps = [
-    { text: "We can color the paragraph blue", delay: 1000, action: () => setAppliedStyles(prev => ({ ...prev, paragraphColor: 'blue' })) },
-    { text: "or change all elements to black", delay: 3000, action: () => setAppliedStyles(prev => ({ ...prev, color: 'black' })) },
-    { text: "We can change their fonts to make it much prettier", delay: 5000, action: () => setAppliedStyles(prev => ({ ...prev, font: 'minimalist' })) },
-    { text: "We can add designed borders", delay: 7000, action: () => setAppliedStyles(prev => ({ ...prev, border: true })) },
-    { text: "and add our own images to make it personalized.", delay: 9000, action: () => {
+    { text: "We can color the paragraph blue,", delay: 2500, action: () => setAppliedStyles(prev => ({ ...prev, paragraphColor: 'blue' })) },
+    { text: "or change all elements to black.", delay: 2500, action: () => setAppliedStyles(prev => ({ ...prev, color: 'black' })) },
+    { text: "We can also change their fonts to make it much prettier.", delay: 2500, action: () => setAppliedStyles(prev => ({ ...prev, font: 'minimalist' })) },
+    { text: "We can also add designed borders,", delay: 2500, action: () => setAppliedStyles(prev => ({ ...prev, border: true })) },
+    { text: "and add our own images to make it personalized.", delay: 2500, action: () => {
       setAppliedStyles(prev => ({ ...prev, image: true }));
       setShowBlog(true);
     }}
@@ -76,7 +76,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
         setCurrentChatText(currentStepData.text);
         setShowChatBubble(true);
         
-        // Hide chat bubble after 2 seconds
+        // Hide chat bubble after 2 seconds, giving 0.5s gap before next step
         setTimeout(() => setShowChatBubble(false), 2000);
         
         setCurrentStep(prev => prev + 1);
@@ -157,7 +157,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                </div>
-               <span className="text-sm text-gray-600">Edward Diesta's Website - CSS Styled</span>
+               <span className="text-sm text-gray-600">Edward Diesta&apos;s Website</span>
              </div>
              
                            <div className="p-6" style={{
