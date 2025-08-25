@@ -102,7 +102,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
          {/* Typewriter intro text at the top */}
          <div className="text-center mb-12">
            {titleDisplayed && (
-             <h1 className="text-5xl font-bold mb-8 text-purple-600 font-serif">
+             <h1 className="text-5xl font-bold mb-8 text-gray-800 font-sans">
                {displayedTitle}
                {titleTextIndex < titleText.length && <span className="animate-pulse">|</span>}
              </h1>
@@ -144,7 +144,12 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
 
          {/* CSS Styled Blog Preview */}
          {showPreview && (
-           <div className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+           <motion.div 
+             className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg"
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.5 }}
+           >
              {/* Browser-like header */}
              <div className="bg-gray-200 px-4 py-2 border-b border-gray-300 flex items-center">
                <div className="flex space-x-2 mr-3">
@@ -167,9 +172,6 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                    fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700',
                    letterSpacing: 'normal'
                  }}
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.5 }}
                >
                  You add a title, done.
                </motion.h1>
@@ -186,9 +188,6 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                     backgroundColor: appliedStyles.paragraphColor === 'blue' && !appliedStyles.color ? '#dbeafe' : 'transparent',
                     transition: 'all 0.4s ease-in-out'
                   }}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
                 >
                   You add a paragraph, done.
                 </motion.p>
@@ -206,9 +205,6 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                      background: appliedStyles.color === 'black' ? '#374151' : 'transparent',
                      transition: 'all 0.4s ease-in-out'
                    }}
-                   initial={{ opacity: 0, y: 10 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.3, delay: index * 0.1 }}
                  >
                    {/* Placeholder people images - moved to upper right and vertically centered */}
                    {appliedStyles.image && (
@@ -247,7 +243,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
 
 
              </div>
-           </div>
+           </motion.div>
          )}
 
          {/* Continue button */}
@@ -261,7 +257,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                whileHover={{ scale: 1.02 }}
                whileTap={{ scale: 0.98 }}
              >
-               Continue to JavaScript
+               Continue
              </motion.button>
            </motion.div>
          )}
