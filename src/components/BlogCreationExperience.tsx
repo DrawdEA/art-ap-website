@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import StartScreen from './StartScreen';
 import Section1 from './sections/Section1';
 import Section2 from './sections/Section2';
@@ -72,13 +71,13 @@ export default function BlogCreationExperience() {
         />
       )}
       {currentSection === 5 && (
-        <Section5 onComplete={progressToNextSection} />
+        <Section5 onComplete={progressToNextSection} addBlogElement={addBlogElement} blogElements={blogElements} />
       )}
       {currentSection === 6 && (
         <Section6 onComplete={progressToNextSection} />
       )}
       {currentSection === 7 && (
-        <Section7 blogElements={blogElements} />
+        <Section7 />
       )}
     </div>
   );

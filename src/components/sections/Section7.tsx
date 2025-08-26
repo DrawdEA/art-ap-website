@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface Section7Props {
-  onComplete: () => void;
+  onComplete?: () => void;
 }
 
-export default function Section7({ onComplete }: Section7Props) {
+export default function Section7({}: Section7Props) {
   const [displayedHeader, setDisplayedHeader] = useState('');
   const [displayedSubheader, setDisplayedSubheader] = useState('');
   const [displayedFinalThought, setDisplayedFinalThought] = useState('');
@@ -126,7 +127,7 @@ export default function Section7({ onComplete }: Section7Props) {
     }, 100);
 
     return () => clearTimeout(setupTimer);
-  }, []);
+  });
 
   return (
     <div id="section7" className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-gray-900 text-white relative overflow-hidden">
@@ -197,7 +198,7 @@ export default function Section7({ onComplete }: Section7Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 3, duration: 2, ease: "easeOut" }}
           >
-            <img 
+            <Image 
               src="/moon.png" 
               alt="Moon" 
               className="w-full h-auto object-cover"

@@ -185,7 +185,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
                   <h2 className="text-xl font-bold mb-2 text-black">You group them together using a div, easy.</h2>
-                  <p className="text-black text-sm text-gray-600">You create multiple duplicates of those things, and you've got yourself a blog website.</p>
+                  <p className="text-black text-sm text-gray-600">You create multiple duplicates of those things, and you&apos;ve got yourself a blog website.</p>
                 </motion.div>
               ))}
 
