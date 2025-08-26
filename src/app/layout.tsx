@@ -115,7 +115,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-title': 'A Tribute to WebDev',
     'application-name': 'A Tribute to WebDev',
     'msapplication-TileColor': '#000000',
-    'msapplication-config': '/browserconfig.xml',
+    'msapplication-config': '/favicons/browserconfig.xml',
   },
 };
 
