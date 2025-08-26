@@ -19,6 +19,13 @@ export default function Section1({ onComplete }: Section1Props) {
     "Despite this, I find that in a specific field of this course that I am currently pursuing, there is one that seems to sway away from this trend. Web development. I find that it's just as much considered \"art\" as how people look at paintings, songs, and other traditional forms of art."
   ];
 
+  // Helper function to get typing delay based on the previous character
+  const getTypingDelay = (prevChar: string) => {
+    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === ',') return 400; // Medium pause after commas
+    return 30; // Normal typing speed
+  };
+
   useEffect(() => {
     // Show command after 1 second
     const commandTimer = setTimeout(() => setShowCommand(true), 1000);
@@ -27,10 +34,14 @@ export default function Section1({ onComplete }: Section1Props) {
 
   useEffect(() => {
     if (showCommand && currentParagraph < paragraphs.length && currentIndex < paragraphs[currentParagraph].length) {
+      const currentChar = paragraphs[currentParagraph][currentIndex];
+      const prevChar = currentIndex > 0 ? paragraphs[currentParagraph][currentIndex - 1] : '';
+      const delay = getTypingDelay(prevChar);
+      
       const timer = setTimeout(() => {
-        setDisplayedText(prev => prev + paragraphs[currentParagraph][currentIndex]);
+        setDisplayedText(prev => prev + currentChar);
         setCurrentIndex(prev => prev + 1);
-      }, 30);
+      }, delay);
 
       return () => clearTimeout(timer);
     } else if (currentIndex >= paragraphs[currentParagraph].length && currentParagraph < paragraphs.length - 1) {

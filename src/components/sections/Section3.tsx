@@ -19,10 +19,19 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
 
   const titleText = "CSS.";
   const introText = "Okay, cool. We got the content down. Now what? We style it. The second backbone of the internet is CSS. It is what allows us to color and style our structured content to make it prettier. Think of it as the coder's paintbrush. With this, we can now let our creative freedom roam and add as much styling as we wish.";
+
+  // Helper function to get typing delay based on the previous character
+  const getTypingDelay = (prevChar: string) => {
+    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === ',') return 400; // Medium pause after commas
+    return 30; // Normal typing speed
+  };
   
   const [titleDisplayed, setTitleDisplayed] = useState(false);
   const [titleTextIndex, setTitleTextIndex] = useState(0);
   const [displayedTitle, setDisplayedTitle] = useState('');
+  const [titleComplete, setTitleComplete] = useState(false);
+  const [titleDelayComplete, setTitleDelayComplete] = useState(false);
   const [showChatBubble, setShowChatBubble] = useState(false);
   const [currentChatText, setCurrentChatText] = useState('');
 
@@ -44,25 +53,41 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
       setTimeout(() => setTitleDisplayed(true), 500);
     } else if (titleTextIndex < titleText.length) {
       // Type out title first
+      const currentChar = titleText[titleTextIndex];
+      const prevChar = titleTextIndex > 0 ? titleText[titleTextIndex - 1] : '';
+      const delay = getTypingDelay(prevChar);
+      
       const timer = setTimeout(() => {
-        setDisplayedTitle(prev => prev + titleText[titleTextIndex]);
+        setDisplayedTitle(prev => prev + currentChar);
         setTitleTextIndex(prev => prev + 1);
-      }, 100);
+      }, delay);
 
       return () => clearTimeout(timer);
+    } else if (!titleComplete) {
+      // Add delay after title is complete before starting intro text
+      setTitleComplete(true);
+      // Start the delay timer
+      setTimeout(() => setTitleDelayComplete(true), 1000);
+    } else if (!titleDelayComplete) {
+      // Wait for delay to complete
+      return;
     } else if (currentIndex < introText.length) {
-      // After title is complete, type out intro text
+      // After title is complete and delay passed, type out intro text
+      const currentChar = introText[currentIndex];
+      const prevChar = currentIndex > 0 ? introText[currentIndex - 1] : '';
+      const delay = getTypingDelay(prevChar);
+      
       const timer = setTimeout(() => {
-        setDisplayedText(prev => prev + introText[currentIndex]);
+        setDisplayedText(prev => prev + currentChar);
         setCurrentIndex(prev => prev + 1);
-      }, 30);
+      }, delay);
 
       return () => clearTimeout(timer);
     } else {
       // Show preview after intro text is complete
       setTimeout(() => setShowPreview(true), 1000);
     }
-  }, [titleDisplayed, titleTextIndex, titleText, currentIndex, introText]);
+  }, [titleDisplayed, titleTextIndex, titleText, currentIndex, introText, titleComplete, titleDelayComplete]);
 
   // Handle steps after preview is shown
   useEffect(() => {
