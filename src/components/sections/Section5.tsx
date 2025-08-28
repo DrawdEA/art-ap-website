@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { getSectionContent, getTypingDelays } from '../../hooks/useEssayContent';
 
 interface Section5Props {
   onComplete: () => void;
-  addBlogElement: (type: string, content: string) => void;
+  addBlogElement: (type: string, content: any) => void;
   blogElements: Record<string, string | string[]>;
 }
 
@@ -20,18 +21,36 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
   const [facebookTextIndex, setFacebookTextIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
-  const headerText = "Suddenly, coding doesn't seem too far away from what people consider art.";
-  const introText = "In fact, it has always been a form of art. People mimic what they see and turn it into one. These websites are a model testament to this.";
-  const facebookTitle = "Facebook, for instance, is essentially a microcosm of our society in online form.";
-  const facebookText = "You meet people, create discussions, and share your opinion.";
+  // Get content from JSON
+  const content = getSectionContent('section5');
+  const typingDelays = getTypingDelays();
+  
+  const headerText = content.headerText;
+  const introText = content.introText;
+  const facebookTitle = content.facebookTitle;
+  const facebookText = content.facebookText;
+  const buttonText = content.buttonText;
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
-    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
-    if (prevChar === ',') return 400; // Medium pause after commas
-    return 40; // Normal typing speed
+    if (prevChar === '.' || prevChar === '!') return typingDelays.period;
+    if (prevChar === ',') return typingDelays.comma;
+    return typingDelays.normal;
   };
+
+  // Hide scroll indicator when user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollIndicator(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Typewriter effect for header text
   useEffect(() => {
@@ -218,15 +237,46 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
         <div className="min-h-screen flex flex-col justify-center px-8">
           {/* Main header */}
           <motion.div 
-            className="text-center h-screen flex items-center justify-center"
+            className="text-center h-screen flex flex-col items-center justify-center relative"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <h1 className="text-6xl font-bold text-white font-lexend leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-white font-lexend leading-tight px-4">
               {displayedHeader}
               {headerIndex > 0 && headerIndex < headerText.length && <span className="animate-pulse text-white">|</span>}
             </h1>
+            
+            {/* Scroll down indicator */}
+            {showScrollIndicator && (
+              <motion.div 
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2, duration: 0.8 }}
+              >
+                <motion.div
+                  className="flex flex-col items-center text-white/70"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <span className="text-sm font-light mb-2">Scroll down</span>
+                  <svg 
+                    className="w-6 h-6" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                    />
+                  </svg>
+                </motion.div>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Subheader */}
@@ -236,7 +286,7 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <p className="text-2xl leading-relaxed text-white max-w-4xl mx-auto">
+            <p className="text-lg md:text-2xl leading-relaxed text-white max-w-4xl mx-auto px-4">
               {displayedSubheader}
               {subheaderIndex > 0 && subheaderIndex < introText.length && <span className="animate-pulse text-white">|</span>}
             </p>
@@ -251,11 +301,11 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3, duration: 1 }}
           >
-            <h2 className="text-4xl font-bold text-white font-lexend mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold text-white font-lexend mb-6 px-4">
               {displayedFacebookTitle}
               {facebookTitleIndex < facebookTitle.length && <span className="animate-pulse text-white">|</span>}
             </h2>
-            <p className="text-xl leading-relaxed text-white max-w-3xl mx-auto mb-8">
+            <p className="text-lg md:text-xl leading-relaxed text-white max-w-3xl mx-auto mb-8 px-4">
               {displayedFacebookText}
               {facebookTitleIndex >= facebookTitle.length && facebookTextIndex < facebookText.length && <span className="animate-pulse text-white">|</span>}
             </p>
@@ -319,23 +369,25 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
 
             {/* Continue button - only show after all text and planet animations are complete */}
             {facebookTextIndex >= facebookText.length && (
-              <motion.button
-                className="bg-transparent text-white mx-auto px-4 py-2 text-lg font-medium transition-all duration-300 hover:bg-white hover:text-black"
-                onClick={() => {
-                  setIsTransitioning(true);
-                  setTimeout(() => {
-                    window.scrollTo(0, 0);
-                    onComplete();
-                  }, 2000);
-                }}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 4, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Continue
-              </motion.button>
+              <motion.div className="text-center mt-8">
+                <motion.button
+                  className="bg-transparent hover:bg-white hover:text-black text-white px-8 py-4 rounded-none text-xl font-light transition-all duration-300"
+                  onClick={() => {
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                      window.scrollTo(0, 0);
+                      onComplete();
+                    }, 2000);
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 4, duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Continue
+                </motion.button>
+              </motion.div>
             )}
           </motion.div>
         </div>

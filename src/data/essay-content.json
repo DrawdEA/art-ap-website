@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "title": "A Tribute to WebDev",
+    "subtitle": "An Art Appreciation Essay in Website Form",
+    "signature": "After all, I have always considered it as so.",
+    "author": "Edward Joshua M. Diesta",
+    "roles": "Web Developer, Artist, and Ateneo Student",
+    "description": "An interactive art appreciation essay exploring the artistic nature of web development through HTML, CSS, and JavaScript."
+  },
+  "sections": {
+    "section1": {
+      "title": "Computer Science",
+      "paragraphs": [
+        "Computer Science. Probably the farthest away from what people would think is \"artistic.\" Finding the most efficient algorithm, coding with the most logical framework, and solving LeetCode problems are some things that come to mind when people think of our course. These ideas don't seem like something you would interpret, nor consider as art. Nothing about these ideas sounds creative at all.",
+        "Despite this, I find that a specific field of this course just so happens to stray away from this trend. Web development. To me, it's just as much considered \"art\" as how people look at paintings, songs, and other traditional forms of art."
+      ],
+      "commandText": "npm start",
+      "buttonText": "Continue"
+    },
+    "section2": {
+      "title": "HTML",
+      "introText": "Usually the first exposure people get to coding. It is the backbone of the internet. It's simple. It's straightforward. It's logical. It creates the structure of every website on the web. You add a title, done. You add a paragraph, done. You group them together using a div, easy. You create multiple duplicates of those things, and you've got yourself a blog website.",
+      "steps": [
+        {
+          "text": "You add a title, done.",
+          "action": "addTitle"
+        },
+        {
+          "text": "You add a paragraph, done.",
+          "action": "addParagraph"
+        },
+        {
+          "text": "You group them together using a div, easy.",
+          "action": "addDiv"
+        },
+        {
+          "text": "You create multiple duplicates of those things, and you've got yourself a blog website.",
+          "action": "completeBlog"
+        }
+      ],
+      "buttonText": "Continue"
+    },
+    "section3": {
+      "title": "CSS",
+      "introText": "Okay, cool. We got the content down. Now what? We style it. The second backbone of the internet is CSS. It is what allows us to color and style our structured content to make it prettier. Think of it as the coder's paintbrush. With this, we can now let our creative freedom roam and add as much styling as we wish. We can color a div black or all of them blue. We can change their fonts to make it much prettier. We can add designed borders and add our own images to make it personalized.",
+      "steps": [
+        {
+          "text": "You add a title, done.",
+          "action": "addTitle"
+        },
+        {
+          "text": "You add a paragraph, done.",
+          "action": "addParagraph"
+        },
+        {
+          "text": "You group them together using a div, easy.",
+          "action": "addDiv"
+        },
+        {
+          "text": "You create multiple duplicates of those things, and you've got yourself a blog website.",
+          "action": "completeBlog"
+        }
+      ],
+      "buttonText": "Continue"
+    },
+    "section4": {
+      "title": "JavaScript",
+      "introText": "The third backbone of the internet is JavaScript. Yes, a programming language. 99% of all websites use this language as the one that handles all its logic. It might not be obvious at first glance, but for every button you click and every animation you see, JavaScript is most likely the one behind the mechanism. It turns a plain, static website into a beautiful and interactive experience.",
+      "steps": [
+        {
+          "text": "Let's add some interactivity to our blog! Click the button to see JavaScript in action.",
+          "action": "showInteractivity"
+        }
+      ],
+      "buttonText": "Continue"
+    },
+    "section5": {
+      "title": "The Facebook Microcosm",
+      "headerText": "Suddenly, coding doesn't seem too far away from what people consider art.",
+      "introText": "In fact, it has always been a form of art. People mimic what they see and turn it into one. These websites are a model testament to this.",
+      "facebookTitle": "Facebook, for instance, is essentially a microcosm of our society in online form.",
+      "facebookText": "You meet people, create discussions, and share your opinion.",
+      "buttonText": "Continue"
+    },
+    "section6": {
+      "title": "Earth Landing",
+      "headerText": "Websites are more human than most people might think.",
+      "introText": "At the end of the day, our end goal is to communicate and express an idea in digitized form. The deliberate choices in how the content is laid out, which fonts to use, and how the interactions should be ordered show that the line between coder and artist is blurrier than we imagine.",
+      "buttonText": "Continue"
+    },
+    "section7": {
+      "title": "Art is Everywhere",
+      "headerText": "Art is everywhere.",
+      "introText": "Needless to say, with how fast the technology is improving, websites are also everywhere. Moving forward, I'd like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others. After all, I have always considered it as so. The debate is no longer whether a website can be considered art, but rather how this art form challenges the very definition of it. A website, in its true unique fashion, is a combination of both aesthetics and practicality. It is not something we hang up on a gallery wall, just like paintings. It dwells within our screens, embedded in our day-to-day workings and routines. Such merging pushes us to beyond our traditional thoughts of what art is something that we look at and interpret. It can be something we actually use.",
+      "finalThought": "Art, then becomes not a reflection of our world but rather the world we now live in.",
+      "essayDescription": "An Art Appreciation Essay in Website Form",
+      "portfolioLinks": {
+        "viewCode": "View Code",
+        "portfolio": "Portfolio",
+        "restart": "Restart"
+      },
+      "buttonText": "Continue"
+    }
+  },
+  "ui": {
+    "buttons": {
+      "skip": "Skip",
+      "continue": "Continue",
+      "restart": "Restart"
+    },
+    "navigation": {
+      "next": "Next",
+      "previous": "Previous"
+    }
+  },
+  "social": {
+    "github": "https://github.com/DrawdEA/art-ap-website",
+    "portfolio": "https://diesta.dev/",
+    "liveDemo": "https://artap.diesta.dev"
+  },
+  "typing": {
+    "delays": {
+      "period": 800,
+      "comma": 400,
+      "normal": 30
+    },
+    "cursor": "|"
+  }
+}

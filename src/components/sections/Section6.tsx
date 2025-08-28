@@ -211,7 +211,7 @@ export default function Section6({ onComplete }: Section6Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <h1 className="text-6xl font-bold text-white font-lexend leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-white font-lexend leading-tight px-4">
               {displayedHeader}
               {headerIndex < headerText.length && <span className="animate-pulse text-white">|</span>}
             </h1>
@@ -224,7 +224,7 @@ export default function Section6({ onComplete }: Section6Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <p className="text-2xl leading-relaxed text-blue-100 max-w-4xl mx-auto">
+            <p className="text-lg md:text-2xl leading-relaxed text-blue-100 max-w-4xl mx-auto px-4">
               {displayedSubheader}
               {subheaderIndex < introText.length && <span className="animate-pulse text-white">|</span>}
             </p>

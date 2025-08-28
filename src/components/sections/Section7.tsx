@@ -172,7 +172,7 @@ export default function Section7({}: Section7Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <h1 className="text-6xl font-bold text-white font-lexend leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-white font-lexend leading-tight px-4">
               {displayedHeader}
               {headerIndex < headerText.length && <span className="animate-pulse text-white">|</span>}
             </h1>
@@ -185,7 +185,7 @@ export default function Section7({}: Section7Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            <p className="text-2xl leading-relaxed text-slate-100 max-w-4xl mx-auto">
+            <p className="text-lg md:text-2xl leading-relaxed text-slate-100 max-w-4xl mx-auto px-4">
               {displayedSubheader}
               {subheaderIndex < introText.length && <span className="animate-pulse text-white">|</span>}
             </p>
@@ -201,6 +201,8 @@ export default function Section7({}: Section7Props) {
             <Image 
               src="/moon.png" 
               alt="Moon" 
+              width={800}
+              height={600}
               className="w-full h-auto object-cover"
             />
           </motion.div>

@@ -16,7 +16,7 @@ Suddenly, coding doesn’t seem too far away from what people consider art. In f
 
 Websites are more human than most people might think. At the end of the day, our end goal is to communicate and express an idea in digitized form. The deliberate choices in how the content is laid out, which fonts to use, and how the interactions should be ordered show that the line between coder and artist is blurrier than we imagine.
 
-Art is everywhere. Needless to say, with how fast the technology is improving, websites are also everywhere. Moving forward, I’d like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others. After all, I have always considered it as so.
+Art is everywhere. Needless to say, with how fast the technology is improving, websites are also everywhere. Moving forward, I’d like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others. After all, I have always considered it as so. The debate is no longer whether a website can be considered art, but rather how this art form challenges the very definition of it. A website, in its true unique fashion, is a combination of both aesthetics and practicality. It is not something we hang up on a gallery wall, just like paintings. It dwells within our screens, embedded in our day-to-day workings and routines. Such merging pushes us to beyond our traditional thoughts of what art is something that we look at and interpret. It can be something we actually use. Art is no longer a reflection of our world but rather the world we now live in.
 
 
 ## Technical Implementation
