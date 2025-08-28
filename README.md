@@ -1,61 +1,31 @@
 # A Tribute to WebDev
 
-## An Art Appreciation Essay in Website Form
-
 *"After all, I have always considered it as so."*
 
 ---
 
-## Introduction
+Computer Science. Probably the farthest away from what people would think is “artistic.” Finding the most efficient algorithm, coding with the most logical framework, and solving LeetCode problems are some things that come to mind when people think of our course. These ideas don’t seem like something you would interpret, nor consider as art. Nothing about these ideas sounds creative at all. Despite this, I find that a specific field of this course just so happens to stray away from this trend. Web development. To me, it’s just as much considered “art” as how people look at paintings, songs, and other traditional forms of art. 
 
-This project is an interactive art appreciation essay that explores the artistic nature of web development. Through a journey across seven distinct sections, I demonstrate how the fundamental technologies of the web—HTML, CSS, and JavaScript—transcend their utilitarian purpose to become mediums of artistic expression.
+HTML. Usually the first exposure people get to coding. It is the backbone of the internet. It’s simple. It’s straightforward. It’s logical. It creates the structure of every website on the web. You add a title, done. You add a paragraph, done. You group them together using a div, easy. You create multiple duplicates of those things, and you've got yourself a blog website.
 
-## The Journey
+Okay, cool. We got the content down. Now what? We style it. The second backbone of the internet is CSS. It is what allows us to color and style our structured content to make it prettier. Think of it as the coder’s paintbrush. With this, we can now let our creative freedom roam and add as much styling as we wish. We can color a div black or all of them blue. We can change their fonts to make it much prettier. We can add designed borders and add our own images to make it personalized.
 
-### Section 1: Computer Science
-Computer Science is not merely a field of study; it is a canvas for creativity. In the digital age, we have discovered that code can be as expressive as paint on canvas, as rhythmic as music, and as profound as poetry. The binary world of ones and zeros becomes a playground for imagination, where logical structures give birth to beautiful, interactive experiences.
+The third backbone of the internet is JavaScript. Yes, a programming language. 99% of all websites use this language as the one that handles all its logic. It might not be obvious at first glance, but for every button you click and every animation you see, JavaScript is most likely the one behind the mechanism. It turns a plain, static website into a beautiful and interactive experience.
 
-### Section 2: HTML
-HTML is the foundation upon which digital art is built. Like a sculptor's clay or an architect's blueprint, HTML provides the structure that gives form to our digital creations. Each tag is a brushstroke, each element a building block, and together they create the skeleton of experiences that millions will interact with daily. The simplicity of HTML belies its power—it is the universal language of the web, understood by browsers and humans alike.
+Suddenly, coding doesn’t seem too far away from what people consider art. In fact, it has always been a form of art. People mimic what they see and turn it into one. These websites are a model testament to this. Facebook, for instance, is essentially a microcosm of our society in online form. You meet people, create discussions, and share your opinion.
 
-### Section 3: CSS
-CSS transforms the functional into the beautiful. It is the artist's palette of the digital world, where colors, typography, and layout come together to create visual harmony. Through CSS, we can paint with pixels, sculpt with shadows, and animate with time. The same HTML structure can be transformed into countless visual experiences, proving that beauty and function are not mutually exclusive in the digital realm.
+Websites are more human than most people might think. At the end of the day, our end goal is to communicate and express an idea in digitized form. The deliberate choices in how the content is laid out, which fonts to use, and how the interactions should be ordered show that the line between coder and artist is blurrier than we imagine.
 
-### Section 4: JavaScript
-JavaScript breathes life into static structures. It is the animator's hand, the conductor's baton, orchestrating interactions and responses that make the digital world feel alive and responsive. Through JavaScript, we can create experiences that adapt, learn, and surprise—turning passive consumption into active engagement. It is the bridge between human intention and digital response.
+Art is everywhere. Needless to say, with how fast the technology is improving, websites are also everywhere. Moving forward, I’d like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others. After all, I have always considered it as so.
 
-### Section 5: The Facebook Microcosm
-In this section, I explore how these technologies come together to create something greater than the sum of their parts. The Facebook microcosm represents the social fabric of the internet—a complex network of connections, interactions, and relationships. Here, HTML provides the structure, CSS creates the visual appeal, and JavaScript enables the dynamic behavior that makes social media feel alive and engaging.
-
-### Section 6: Earth Landing
-As we journey through the digital cosmos, we eventually return to Earth—the real world where our digital creations serve real people with real needs. This landing represents the moment when technology meets humanity, when code becomes experience, and when art serves purpose. It is a reminder that behind every line of code, there is a human story waiting to be told.
-
-### Section 7: Art is Everywhere
-The final revelation: art is not confined to galleries or museums. It exists in the websites we visit daily, in the apps we use, in the digital experiences that have become extensions of our lives. Web development is not just about building functional tools—it's about creating beautiful, meaningful experiences that enrich the human condition.
 
 ## Technical Implementation
 
 This essay is built using modern web technologies:
-- **React/Next.js**: For component-based architecture and smooth user experience
-- **Framer Motion**: For fluid animations and transitions
-- **TailwindCSS**: For responsive design and consistent styling
-- **TypeScript**: For type safety and code quality
-
-## The Philosophy
-
-Web development is art. Every website, every application, every digital experience is a work of art that combines form and function in ways that traditional media cannot. The web is our canvas, code is our medium, and human experience is our muse.
-
-When we write HTML, we are composing poetry in the language of structure.
-When we write CSS, we are painting with the colors of the digital palette.
-When we write JavaScript, we are choreographing the dance of interaction.
-
-## Conclusion
-
-This project serves as both a demonstration and a declaration: that web development is not merely a technical skill, but an artistic discipline. It challenges the traditional boundaries between technology and art, showing that the most beautiful code is not just functional—it's meaningful, expressive, and human.
-
-In the end, web development is about creating experiences that matter, interfaces that inspire, and interactions that delight. It is about using technology not just to solve problems, but to create beauty, meaning, and connection in the digital world.
-
-*"After all, I have always considered it as so."*
+- **React/Next.js**
+- **Framer Motion**
+- **TailwindCSS**
+- **TypeScript**
 
 ---
 
@@ -63,7 +33,5 @@ In the end, web development is about creating experiences that matter, interface
 - [View Code](https://github.com/yourusername/art-ap-website)
 - [Live Demo](https://artap.diesta.dev)
 
-**Created by:** [Your Name]  
-**Roles:** Web Developer, Digital Artist, Creative Technologist
-
-*This project was created as an interactive art appreciation essay exploring the artistic nature of web development technologies.*
+**Created by:** Edward Joshua M. Diesta
+**Roles:** Web Developer, Digital Artist, Ateneo Student
