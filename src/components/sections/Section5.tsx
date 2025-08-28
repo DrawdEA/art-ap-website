@@ -26,12 +26,13 @@ export default function Section5({ onComplete, addBlogElement, blogElements }: S
   // Get content from JSON
   const content = getSectionContent('section5');
   const typingDelays = getTypingDelays();
-  
-  const headerText = content.headerText;
-  const introText = content.introText;
-  const facebookTitle = content.facebookTitle;
-  const facebookText = content.facebookText;
-  const buttonText = content.buttonText;
+
+  // Use fallback values if properties do not exist on content
+  const headerText = (content as any).headerText ?? (content as any).title ?? '';
+  const introText = (content as any).introText ?? '';
+  const facebookTitle = (content as any).facebookTitle ?? '';
+  const facebookText = (content as any).facebookText ?? '';
+  const buttonText = (content as any).buttonText ?? '';
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
