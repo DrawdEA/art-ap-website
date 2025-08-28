@@ -3,12 +3,16 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useEssayContent } from '../../hooks/useEssayContent';
 
 interface Section7Props {
   onComplete?: () => void;
 }
 
 export default function Section7({}: Section7Props) {
+  const essayContent = useEssayContent();
+  const section7Data = essayContent?.sections?.section7;
+  
   const [displayedHeader, setDisplayedHeader] = useState('');
   const [displayedSubheader, setDisplayedSubheader] = useState('');
   const [displayedFinalThought, setDisplayedFinalThought] = useState('');
@@ -17,9 +21,12 @@ export default function Section7({}: Section7Props) {
   const [finalThoughtIndex, setFinalThoughtIndex] = useState(0);
   const [isInView, setIsInView] = useState(false);
 
-  const headerText = "After all, art is everywhere.";
-  const introText = "Needless to say, with how fast the technology is improving, websites are also everywhere. Moving forward, I'd like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others.";
-  const finalThought = "After all, I have always considered it as so.";
+  const headerText = section7Data?.headerText || "Art is everywhere.";
+  const introText = section7Data?.introText || "Needless to say, with how fast the technology is improving, websites are also everywhere. I'd like to see how people will open up to the discussion of whether or not to consider a website an art form, similar to how they do with sculptures, literature, film, among many others. After all, I have always considered it as so. The debate is no longer whether a website can be considered art, but rather how this art form challenges the very definition of it. A website, in its true unique fashion, is a combination of both aesthetics and practicality. It is not something we hang up on a gallery wall, just like paintings. It dwells within our screens, embedded in our day-to-day workings and routines. Such merging pushes us to beyond our traditional thoughts of what art is. It is not just something that we look at and interpret. It can be something we actually use.";
+  const finalThought = section7Data?.finalThought || "Art, then becomes not a reflection of our world but rather the world we now live in.";
+  const essayDescription = section7Data?.essayDescription || "An Art Appreciation Essay in Website Form";
+  const portfolioLinks = section7Data?.portfolioLinks;
+  const socialLinks = essayContent?.social;
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
@@ -234,7 +241,7 @@ export default function Section7({}: Section7Props) {
                animate={{ opacity: 1 }}
                transition={{ delay: 4.3, duration: 0.5 }}
              >
-               An Art Appreciation Essay in Website Form
+               {essayDescription}
              </motion.p>
              
              {/* Signature and role */}
@@ -251,7 +258,7 @@ export default function Section7({}: Section7Props) {
                  animate={{ opacity: 1 }}
                  transition={{ delay: 5, duration: 0.5 }}
                >
-                 Diesta, Edward Joshua M.
+                 {essayContent?.metadata?.author || "Diesta, Edward Joshua M."}
                </motion.h2>
                <motion.p 
                  className="text-xl text-slate-200"
@@ -259,7 +266,7 @@ export default function Section7({}: Section7Props) {
                  animate={{ opacity: 1 }}
                  transition={{ delay: 5.2, duration: 0.5 }}
                >
-                 Web Developer, Artist, and Ateneo Student
+                 {essayContent?.metadata?.roles || "Web Developer, Artist, and Ateneo Student"}
                </motion.p>
                <motion.div
                  className="w-64 h-1 bg-white mx-auto mt-4"
@@ -272,7 +279,7 @@ export default function Section7({}: Section7Props) {
             {/* Portfolio and GitHub links - single row */}
             <div className="flex justify-center items-center gap-8 mb-16">
               <motion.a
-                href="https://github.com/DrawdEA/art-ap-website"
+                href={socialLinks?.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-slate-300 text-xl font-light transition-colors duration-300"
@@ -282,11 +289,11 @@ export default function Section7({}: Section7Props) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                View Code
+                {portfolioLinks?.viewCode || "View Code"}
               </motion.a>
 
               <motion.a
-                href="https://diesta.dev/"
+                href={socialLinks?.portfolio}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-slate-300 text-xl font-light transition-colors duration-300"
@@ -296,7 +303,7 @@ export default function Section7({}: Section7Props) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                My Portfolio
+                {portfolioLinks?.portfolio || "My Portfolio"}
               </motion.a>
 
               <motion.button
@@ -308,7 +315,7 @@ export default function Section7({}: Section7Props) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Restart
+                {portfolioLinks?.restart || "Restart"}
               </motion.button>
             </div>
           </motion.div>
