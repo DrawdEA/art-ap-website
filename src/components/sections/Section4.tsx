@@ -24,7 +24,7 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
-    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === '.' || prevChar === '!' || prevChar === '?') return 800; // Longer pause after sentence endings
     if (prevChar === ',') return 400; // Medium pause after commas
     return 30; // Normal typing speed
   };
@@ -235,13 +235,13 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
         )}
 
         {/* JavaScript Interactive Blog Preview */}
-        {showPreview && (
-          <motion.div 
-            className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+                 {showPreview && (
+           <motion.div 
+             className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg w-full"
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.5 }}
+           >
             {/* Browser-like header */}
             <div className="bg-gray-200 px-4 py-2 border-b border-gray-300 flex items-center">
               <div className="flex space-x-2 mr-3">
@@ -252,95 +252,95 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
               <span className="text-sm text-gray-600">Edward Diesta&apos;s Website</span>
             </div>
             
-            {/* Content area with the finished CSS blog */}
-            <div className="p-6 relative" style={{
-              backgroundColor: '#1f2937',
-              transition: 'all 0.4s ease-in-out'
-            }}>
-               {/* Click Me button positioned in upper right */}
-               {showBlog && (
-                 <motion.button
-                   className="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 text-gray-200 px-6 py-3 rounded-none font-medium transition-colors duration-300 border border-gray-500 z-10"
-                   onClick={handleButtonClick}
-                   whileHover={{ scale: 1.02 }}
-                   whileTap={{ scale: 0.98 }}
-                   style={{
-                     fontFamily: 'Rubik Distressed, cursive',
-                     fontWeight: 'normal'
-                   }}
-                 >
-                   Click Me!
-                 </motion.button>
-               )}
+                         {/* Content area with the finished CSS blog */}
+             <div className="p-4 md:p-6 relative overflow-x-auto" style={{
+               backgroundColor: '#1f2937',
+               transition: 'all 0.4s ease-in-out'
+             }}>
+                               {/* Click Me button positioned in upper right */}
+                {showBlog && (
+                  <motion.button
+                    className="absolute top-2 md:top-4 right-2 md:right-4 bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 md:px-6 py-2 md:py-3 rounded-none font-medium transition-colors duration-300 border border-gray-500 z-10 text-sm md:text-base min-w-fit"
+                    onClick={handleButtonClick}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                      fontFamily: 'Rubik Distressed, cursive',
+                      fontWeight: 'normal'
+                    }}
+                  >
+                    Click Me!
+                  </motion.button>
+                )}
 
-               {/* Title */}
-               <motion.h1 
-                 className="text-3xl font-bold mb-4 text-gray-800"
-                 style={{
-                   fontFamily: 'Rubik Distressed, cursive',
-                   color: '#f9fafb',
-                   fontWeight: 'normal',
-                   letterSpacing: 'normal'
-                 }}
-                 animate={isAnimating ? {
-                   scale: [1, 1.2, 0.8, 1.1, 1],
-                   rotate: [0, 5, -5, 3, -3, 0],
-                   x: [0, 10, -10, 5, -5, 0],
-                   filter: ['hue-rotate(0deg)', 'hue-rotate(180deg)', 'hue-rotate(360deg)']
-                 } : {}}
-                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               >
-                 You add a title, done.
-               </motion.h1>
+                               {/* Title */}
+                <motion.h1 
+                  className="text-xl md:text-3xl font-bold mb-4 text-gray-800 pr-20 md:pr-24"
+                  style={{
+                    fontFamily: 'Rubik Distressed, cursive',
+                    color: '#f9fafb',
+                    fontWeight: 'normal',
+                    letterSpacing: 'normal'
+                  }}
+                  animate={isAnimating ? {
+                    scale: [1, 1.2, 0.8, 1.1, 1],
+                    rotate: [0, 5, -5, 3, -3, 0],
+                    x: [0, 10, -10, 5, -5, 0],
+                    filter: ['hue-rotate(0deg)', 'hue-rotate(180deg)', 'hue-rotate(360deg)']
+                  } : {}}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  You add a title, done.
+                </motion.h1>
                
-               {/* Paragraph */}
-               <motion.p 
-                 className="text-gray-600 mb-4 leading-relaxed"
-                 style={{
-                   color: '#e5e7eb',
-                   fontFamily: 'Rubik Distressed, cursive',
-                   border: 'none',
-                   padding: '0',
-                   borderRadius: '0',
-                   backgroundColor: 'transparent',
-                   transition: 'all 0.4s ease-in-out'
-                 }}
-                 animate={isAnimating ? {
-                   y: [0, -15, 15, -8, 8, 0],
-                   opacity: [1, 0.3, 0.8, 0.5, 0.9, 1],
-                   scale: [1, 1.1, 0.9, 1.05, 0.95, 1],
-                   skewX: [0, 5, -5, 3, -3, 0]
-                 } : {}}
-                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-               >
-                 You add a paragraph, done.
-               </motion.p>
+                               {/* Paragraph */}
+                <motion.p 
+                  className="text-gray-600 mb-4 leading-relaxed text-sm md:text-base"
+                  style={{
+                    color: '#e5e7eb',
+                    fontFamily: 'Rubik Distressed, cursive',
+                    border: 'none',
+                    padding: '0',
+                    borderRadius: '0',
+                    backgroundColor: 'transparent',
+                    transition: 'all 0.4s ease-in-out'
+                  }}
+                  animate={isAnimating ? {
+                    y: [0, -15, 15, -8, 8, 0],
+                    opacity: [1, 0.3, 0.8, 0.5, 0.9, 1],
+                    scale: [1, 1.1, 0.9, 1.05, 0.95, 1],
+                    skewX: [0, 5, -5, 3, -3, 0]
+                  } : {}}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  You add a paragraph, done.
+                </motion.p>
                
                {/* Divs with all styling applied */}
-               {[0, 1, 2].map((index) => (
-                 <motion.div 
-                   key={index}
-                   className="border border-gray-300 p-4 mb-4 relative"
-                   style={{
-                     backgroundColor: '#374151',
-                     color: '#f3f4f6',
-                     border: '2px solid #6b7280',
-                     borderRadius: '0',
-                     background: '#374151',
-                     transition: 'all 0.4s ease-in-out'
-                   }}
-                   animate={isAnimating ? {
-                     backgroundColor: ['#374151', '#4b5563', '#6b7280', '#4b5563', '#374151'],
-                     borderColor: ['#6b7280', '#9ca3af', '#d1d5db', '#9ca3af', '#6b7280'],
-                     scale: [1, 1.05, 0.95, 1.02, 1],
-                     rotateY: [0, 15, -15, 10, -10, 0],
-                     y: [0, -5, 5, -3, 3, 0]
-                   } : {}}
-                   transition={{ duration: 3, repeat: Infinity, delay: index * 0.5, ease: "easeInOut" }}
-                 >
-                  {/* Profile images */}
+                               {[0, 1, 2].map((index) => (
                   <motion.div 
-                    className="absolute top-1/2 right-6 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm overflow-hidden transform -translate-y-1/2"
+                    key={index}
+                    className="border border-gray-300 p-3 md:p-4 mb-4 relative"
+                    style={{
+                      backgroundColor: '#374151',
+                      color: '#f3f4f6',
+                      border: '2px solid #6b7280',
+                      borderRadius: '0',
+                      background: '#374151',
+                      transition: 'all 0.4s ease-in-out'
+                    }}
+                    animate={isAnimating ? {
+                      backgroundColor: ['#374151', '#4b5563', '#6b7280', '#4b5563', '#374151'],
+                      borderColor: ['#6b7280', '#9ca3af', '#d1d5db', '#9ca3af', '#6b7280'],
+                      scale: [1, 1.05, 0.95, 1.02, 1],
+                      rotateY: [0, 15, -15, 10, -10, 0],
+                      y: [0, -5, 5, -3, 3, 0]
+                    } : {}}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.5, ease: "easeInOut" }}
+                  >
+                  {/* Profile images - responsive positioning */}
+                  <motion.div 
+                    className="absolute top-2 md:top-1/2 right-2 md:right-6 w-8 h-8 md:w-12 md:h-12 bg-gray-500 rounded-full flex items-center justify-center text-white text-xs md:text-sm overflow-hidden transform md:-translate-y-1/2"
                     animate={isAnimating ? {
                       scale: [1, 1.3, 0.7, 1.2, 1],
                       rotate: [0, 180, 360, 180, 0],
@@ -362,7 +362,7 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
                     <span style={{ display: 'none' }}>👤</span>
                   </motion.div>
                   <motion.h2 
-                    className="text-xl mb-2" 
+                    className="text-lg md:text-xl mb-2 pr-12 md:pr-16" 
                     style={{ 
                       color: '#f9fafb',
                       fontFamily: 'Rubik Distressed, cursive',
@@ -378,7 +378,7 @@ export default function Section4({ onComplete, addBlogElement, blogElements }: S
                     You group them together using a div, easy.
                   </motion.h2>
                   <motion.p 
-                    className="text-sm" 
+                    className="text-xs md:text-sm" 
                     style={{ 
                       color: '#d1d5db',
                       fontFamily: 'Rubik Distressed, cursive'

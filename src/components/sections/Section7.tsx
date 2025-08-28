@@ -23,7 +23,7 @@ export default function Section7({}: Section7Props) {
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
-    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === '.' || prevChar === '!' || prevChar === '?') return 800; // Longer pause after sentence endings
     if (prevChar === ',') return 400; // Medium pause after commas
     return 40; // Normal typing speed
   };

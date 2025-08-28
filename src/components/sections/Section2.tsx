@@ -21,7 +21,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
-    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === '.' || prevChar === '!' || prevChar === '?') return 800; // Longer pause after sentence endings
     if (prevChar === ',') return 400; // Medium pause after commas
     return 30; // Normal typing speed
   };
@@ -133,7 +133,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
         {/* Live HTML preview - shows content being built */}
         {showPreview && (
           <motion.div
-            className="bg-white border border-gray-300 min-h-96"
+            className="bg-white border border-gray-300 min-h-96 w-full"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -149,11 +149,11 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
             </div>
             
             {/* Raw HTML content - unstyled like a real browser */}
-            <div className="p-6 font-sans text-black">
+            <div className="p-4 md:p-6 font-sans text-black overflow-x-auto">
               {/* Title at the top */}
               {blogElements.title && (
                 <motion.h1 
-                  className="text-2xl font-bold mb-4 text-black"
+                  className="text-xl md:text-2xl font-bold mb-4 text-black"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
@@ -166,7 +166,7 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
               {blogElements.paragraphs.map((paragraph: string, index: number) => (
                 <motion.p 
                   key={index}
-                  className="text-black mb-4 leading-relaxed"
+                  className="text-black mb-4 leading-relaxed text-sm md:text-base"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -179,13 +179,13 @@ export default function Section2({ onComplete, addBlogElement, blogElements }: S
               {blogElements.divs.map((div: string, index: number) => (
                 <motion.div 
                   key={index}
-                  className="border border-gray-400 p-4 mb-4"
+                  className="border border-gray-400 p-3 md:p-4 mb-4"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <h2 className="text-xl font-bold mb-2 text-black">You group them together using a div, easy.</h2>
-                  <p className="text-black text-sm text-gray-600">You create multiple duplicates of those things, and you&apos;ve got yourself a blog website.</p>
+                  <h2 className="text-lg md:text-xl font-bold mb-2 text-black">You group them together using a div, easy.</h2>
+                  <p className="text-black text-xs md:text-sm text-gray-600">You create multiple duplicates of those things, and you&apos;ve got yourself a blog website.</p>
                 </motion.div>
               ))}
 

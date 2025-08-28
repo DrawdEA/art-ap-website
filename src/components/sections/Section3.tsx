@@ -22,7 +22,7 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
 
   // Helper function to get typing delay based on the previous character
   const getTypingDelay = (prevChar: string) => {
-    if (prevChar === '.' || prevChar === '!') return 800; // Longer pause after sentence endings
+    if (prevChar === '.' || prevChar === '!' || prevChar === '?') return 800; // Longer pause after sentence endings
     if (prevChar === ',') return 400; // Medium pause after commas
     return 30; // Normal typing speed
   };
@@ -168,13 +168,13 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
          )}
 
          {/* CSS Styled Blog Preview */}
-         {showPreview && (
-           <motion.div 
-             className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg"
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.5 }}
-           >
+                   {showPreview && (
+            <motion.div 
+              className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-lg w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
              {/* Browser-like header */}
              <div className="bg-gray-200 px-4 py-2 border-b border-gray-300 flex items-center">
                <div className="flex space-x-2 mr-3">
@@ -185,24 +185,24 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                <span className="text-sm text-gray-600">Edward Diesta&apos;s Website</span>
              </div>
              
-                           <div className="p-6" style={{
-                             backgroundColor: appliedStyles.color === 'black' ? '#1f2937' : 'white',
-                             transition: 'all 0.4s ease-in-out'
-                           }}>
-                <motion.h1 
-                 className="text-3xl font-bold mb-4 text-gray-800"
-                 style={{
-                   fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
-                   color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
-                   fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700',
-                   letterSpacing: 'normal'
-                 }}
-               >
-                 You add a title, done.
-               </motion.h1>
+                                                       <div className="p-4 md:p-6 overflow-x-auto" style={{
+                              backgroundColor: appliedStyles.color === 'black' ? '#1f2937' : 'white',
+                              transition: 'all 0.4s ease-in-out'
+                            }}>
+                                 <motion.h1 
+                  className="text-xl md:text-3xl font-bold mb-4 text-gray-800"
+                  style={{
+                    fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
+                    color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
+                    fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700',
+                    letterSpacing: 'normal'
+                  }}
+                >
+                  You add a title, done.
+                </motion.h1>
 
                 <motion.p 
-                  className="text-gray-600 mb-4 leading-relaxed"
+                  className="text-gray-600 mb-4 leading-relaxed text-sm md:text-base"
                   style={{
                     color: appliedStyles.paragraphColor === 'blue' && !appliedStyles.color ? '#3b82f6' : 
                            appliedStyles.color === 'black' ? '#e5e7eb' : '#6b7280',
@@ -217,46 +217,46 @@ export default function Section3({ onComplete, addBlogElement, blogElements }: S
                   You add a paragraph, done.
                 </motion.p>
 
-               {[0, 1, 2].map((index) => (
-                 <motion.div 
-                   key={index}
-                   className="border border-gray-300 p-4 mb-4 relative"
-                   style={{
-                     backgroundColor: appliedStyles.color === 'black' ? '#374151' : 'transparent',
-                     color: appliedStyles.color === 'black' ? '#f3f4f6' : 'inherit',
-                     border: appliedStyles.border ? '2px solid #6b7280' : 
-                            appliedStyles.color === 'black' ? 'none' : '1px solid #9ca3af',
-                     borderRadius: '0',
-                     background: appliedStyles.color === 'black' ? '#374151' : 'transparent',
-                     transition: 'all 0.4s ease-in-out'
-                   }}
-                 >
-                   {/* Placeholder people images - moved to upper right and vertically centered */}
-                   {appliedStyles.image && (
-                     <div className="absolute top-1/2 right-6 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm overflow-hidden transform -translate-y-1/2">
-                       <img 
-                         src={`https://i.pravatar.cc/48?img=${index + 1}`} 
-                         alt="Profile" 
-                         className="w-full h-full object-cover"
-                         onError={(e) => {
-                           const target = e.currentTarget as HTMLImageElement;
-                           target.style.display = 'none';
-                           const fallback = target.nextElementSibling as HTMLElement;
-                           if (fallback) fallback.style.display = 'flex';
-                         }}
-                       />
-                       <span style={{ display: 'none' }}>👤</span>
-                     </div>
-                   )}
-                   <h2 className="text-xl mb-2" 
-                       style={{ 
-                         color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
-                         fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
-                         fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700'
-                       }}>
-                     You group them together using a div, easy.
-                   </h2>
-                   <p className="text-sm" 
+                               {[0, 1, 2].map((index) => (
+                  <motion.div 
+                    key={index}
+                    className="border border-gray-300 p-3 md:p-4 mb-4 relative"
+                    style={{
+                      backgroundColor: appliedStyles.color === 'black' ? '#374151' : 'transparent',
+                      color: appliedStyles.color === 'black' ? '#f3f4f6' : 'inherit',
+                      border: appliedStyles.border ? '2px solid #6b7280' : 
+                             appliedStyles.color === 'black' ? 'none' : '1px solid #9ca3af',
+                      borderRadius: '0',
+                      background: appliedStyles.color === 'black' ? '#374151' : 'transparent',
+                      transition: 'all 0.4s ease-in-out'
+                    }}
+                  >
+                                                           {/* Placeholder people images - responsive positioning */}
+                    {appliedStyles.image && (
+                      <div className="absolute top-2 md:top-1/2 right-2 md:right-6 w-8 h-8 md:w-12 md:h-12 bg-gray-500 rounded-full flex items-center justify-center text-white text-xs md:text-sm overflow-hidden transform md:-translate-y-1/2">
+                        <img 
+                          src={`https://i.pravatar.cc/48?img=${index + 1}`} 
+                          alt="Profile" 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = 'flex';
+                          }}
+                        />
+                        <span style={{ display: 'none' }}>👤</span>
+                      </div>
+                    )}
+                    <h2 className="text-lg md:text-xl mb-2 pr-12 md:pr-16" 
+                        style={{ 
+                          color: appliedStyles.color === 'black' ? '#f9fafb' : '#1f2937',
+                          fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif',
+                          fontWeight: appliedStyles.font === 'minimalist' ? 'normal' : '700'
+                        }}>
+                      You group them together using a div, easy.
+                    </h2>
+                   <p className="text-xs md:text-sm" 
                       style={{ 
                         color: appliedStyles.color === 'black' ? '#d1d5db' : '#6b7280',
                         fontFamily: appliedStyles.font === 'minimalist' ? 'Rubik Distressed, cursive' : 'var(--font-sans), system-ui, sans-serif'
