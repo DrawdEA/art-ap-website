@@ -1,6 +1,6 @@
 # A Tribute to WebDev
 
-*"After all, I have always considered it as so."*
+*In classic Computer Science fashion, I made a website to show this type of art form in its truest sense. I hope I was able to demonstrate how nice it is to be able to create art in quite an unconventional way.*
 
 ---
 
