@@ -29,9 +29,6 @@ This essay is built using modern web technologies:
 
 ---
 
-**Portfolio Links:**
-- [View Code](https://github.com/yourusername/art-ap-website)
-- [Live Demo](https://artap.diesta.dev)
 
 **Created by:** Edward Joshua M. Diesta
-**Roles:** Web Developer, Digital Artist, Ateneo Student
+**I am a:** Web Developer, Digital Artist, Ateneo Student
