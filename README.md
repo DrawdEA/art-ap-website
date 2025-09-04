@@ -30,5 +30,4 @@ This essay is built using modern web technologies:
 ---
 
 
-**Created by:** Edward Joshua M. Diesta
-**I am a:** Web Developer, Digital Artist, Ateneo Student
+**Created by:** Edward Joshua M. Diesta. A Web Developer, Digital Artist, and Ateneo Student.
